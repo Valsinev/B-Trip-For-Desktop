@@ -12,7 +12,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -784,11 +783,6 @@ public class Form implements ActionListener, BusinessTripForm {
     public String getToWhichDayField() {
         return this.toWhichDayField.getText();
     }
-
-    public String getAddExpensesField() {
-        return this.addExpensesField.getText();
-    }
-
     @Override
     public List<Integer> getDays() {
         return BTripGetDaysFromCheckboxesOrFields.getDays(this);
