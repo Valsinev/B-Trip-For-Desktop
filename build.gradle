@@ -10,9 +10,21 @@ repositories {
 }
 
 dependencies {
-    implementation files('libs/b-trip-lib.jar')
+    implementation files('libs/b-trip-lib-1.0-SNAPSHOT.jar')
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'org.example.Main' // replace with the actual class containing main method
+        )
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 test {

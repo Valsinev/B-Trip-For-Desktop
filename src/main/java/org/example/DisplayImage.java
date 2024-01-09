@@ -1,7 +1,5 @@
 package org.example;
 
-import org.example.engine.PrintableImage;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
