@@ -12,7 +12,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +29,13 @@ public class Form implements ActionListener, BusinessTripForm {
     public JTextField positionField;
     ButtonGroup isTravelWYV;
     JPanel vehiclePanel;
-    JLabel vehMakeAndModelLabel;
-    public JTextField vehMakeAndModelField;
+
+    private JLabel modelLabel;
+    public JTextField modelField;
+
+    private JLabel makeLabel;
+    public JTextField makeField;
+
     JLabel vehPanelTextLabel;
     JLabel vehCategoryLabel;
     public JTextField vehCategoryField;
@@ -136,9 +141,11 @@ public class Form implements ActionListener, BusinessTripForm {
         numberDocumentsLabel = new JLabel(TextConstants.NUMBER_OF_DOCUMENTS);
         numberDocumentsField = new JTextField();
         isTravelWYV = new ButtonGroup();
-        vehMakeAndModelLabel = new JLabel(TextConstants.VEHICLE_MAKE);
         vehPanelTextLabel = new JLabel(TextConstants.IF_YOU_TRAVEL_LABEL);
-        vehMakeAndModelField = new JTextField();
+        makeLabel = new JLabel(Labels.MAKE);
+        makeField = new JTextField();
+        modelLabel = new JLabel(Labels.MODEL);
+        modelField = new JTextField();
         vehCategoryLabel = new JLabel(TextConstants.VEHICLE_CATEGORY);
         vehCategoryField = new JTextField();
         vehRegNLabel = new JLabel(TextConstants.VEHICLE_REG_NUMBER);
@@ -251,36 +258,6 @@ public class Form implements ActionListener, BusinessTripForm {
         numberDocumentsField.setBounds(10, 140, 200, 20);
         numberDocumentsField.addActionListener(this);
 
-        vehCategoryLabel.setBounds(10, 80, 150, 20);
-        vehCategoryLabel.setForeground(Color.WHITE);
-        vehCategoryField.setBounds(10, 100, 200, 20);
-        vehCategoryField.addActionListener(this);
-
-        vehRegNLabel.setBounds(10, 120, 250, 20);
-        vehRegNLabel.setForeground(Color.WHITE);
-        vehRegNField.setBounds(10, 140, 200, 20);
-        vehRegNField.addActionListener(this);
-
-        costBy100Label.setBounds(10, 160, 250, 20);
-        costBy100Label.setForeground(Color.WHITE);
-        costBy100Field.setBounds(10, 180, 200, 20);
-        costBy100Field.addActionListener(this);
-
-        fuelTypeLabel.setBounds(10, 200, 150, 20);
-        fuelTypeLabel.setForeground(Color.WHITE);
-        fuelTypeField.setBounds(10, 220, 200, 20);
-        fuelTypeField.addActionListener(this);
-
-        fuelPriceLabel.setBounds(10, 240, 150, 20);
-        fuelPriceLabel.setForeground(Color.WHITE);
-        fuelPriceField.setBounds(10, 260, 200, 20);
-        fuelPriceField.addActionListener(this);
-
-        kilometersLabel.setBounds(10, 280, 180, 40);
-        kilometersLabel.setForeground(Color.WHITE);
-        kilometersField.setBounds(10, 320, 200, 20);
-        kilometersField.addActionListener(this);
-
         startDestinationLabel.setBounds(220, 0, 200, 20);
         startDestinationLabel.setForeground(Color.WHITE);
         startDestinationField.setBounds(220, 20, 215, 20);
@@ -328,7 +305,7 @@ public class Form implements ActionListener, BusinessTripForm {
 
         addExpensesLabel.setBounds(335, 332, 105, 30);
         addExpensesLabel.setForeground(Color.WHITE);
-        addExpensesField.setBounds(335,370,105,20);
+        addExpensesField.setBounds(335,370,100,20);
 
         isNightStayLabel.setBounds(220, 395, 230, 20);
         isNightStayLabel.setForeground(Color.WHITE);
@@ -346,10 +323,6 @@ public class Form implements ActionListener, BusinessTripForm {
 
         vehPanelTextLabel.setBounds(20, 220, 250, 20);
         vehPanelTextLabel.setForeground(Color.WHITE);
-        vehMakeAndModelLabel.setBounds(10, 40, 200, 20);
-        vehMakeAndModelLabel.setForeground(Color.WHITE);
-        vehMakeAndModelField.setBounds(10, 60, 200, 20);
-        vehMakeAndModelField.addActionListener(this);
 
         isTravelWithYourVehicle.setBounds(25, 240, 50, 20);
         isTravelWithYourVehicle.setBackground(new Color(50, 50, 50));
@@ -523,14 +496,58 @@ public class Form implements ActionListener, BusinessTripForm {
 
         vehiclePanel = new JPanel();
         vehiclePanel.setBackground(new Color(50, 50, 50));
-        vehiclePanel.setBounds(0, 220, 250, 340);
+        vehiclePanel.setBounds(0, 220, 250, 440);
         vehiclePanel.setVisible(true);
         vehiclePanel.setLayout(null);
 
         frame.add(vehPanelTextLabel);
 
-        vehiclePanel.add(vehMakeAndModelLabel);
-        vehiclePanel.add(vehMakeAndModelField);
+
+
+        makeLabel.setBounds(10, 40, 200, 20);
+        makeLabel.setForeground(Color.WHITE);
+        makeField.setBounds(10, 60, 200, 20);
+        makeField.addActionListener(this);
+
+        modelLabel.setBounds(10, 80, 200, 20);
+        modelLabel.setForeground(Color.WHITE);
+        modelField.setBounds(10, 100, 200, 20);
+        modelField.addActionListener(this);
+
+        vehCategoryLabel.setBounds(10, 120, 150, 20);
+        vehCategoryLabel.setForeground(Color.WHITE);
+        vehCategoryField.setBounds(10, 140, 200, 20);
+        vehCategoryField.addActionListener(this);
+
+        vehRegNLabel.setBounds(10, 160, 250, 20);
+        vehRegNLabel.setForeground(Color.WHITE);
+        vehRegNField.setBounds(10, 180, 200, 20);
+        vehRegNField.addActionListener(this);
+
+        costBy100Label.setBounds(10, 200, 250, 20);
+        costBy100Label.setForeground(Color.WHITE);
+        costBy100Field.setBounds(10, 220, 200, 20);
+        costBy100Field.addActionListener(this);
+
+        fuelTypeLabel.setBounds(10, 240, 150, 20);
+        fuelTypeLabel.setForeground(Color.WHITE);
+        fuelTypeField.setBounds(10, 260, 200, 20);
+        fuelTypeField.addActionListener(this);
+
+        fuelPriceLabel.setBounds(10, 280, 150, 20);
+        fuelPriceLabel.setForeground(Color.WHITE);
+        fuelPriceField.setBounds(10, 300, 200, 20);
+        fuelPriceField.addActionListener(this);
+
+        kilometersLabel.setBounds(10, 320, 180, 20);
+        kilometersLabel.setForeground(Color.WHITE);
+        kilometersField.setBounds(10, 340, 200, 20);
+        kilometersField.addActionListener(this);
+
+        vehiclePanel.add(modelLabel);
+        vehiclePanel.add(modelField);
+        vehiclePanel.add(makeLabel);
+        vehiclePanel.add(makeField);
         vehiclePanel.add(vehCategoryLabel);
         vehiclePanel.add(vehCategoryField);
         vehiclePanel.add(vehRegNLabel);
@@ -545,8 +562,8 @@ public class Form implements ActionListener, BusinessTripForm {
         vehiclePanel.add(kilometersField);
         ///////////////////////////////BUTTON
 
-        button.setBounds(10, 580, 200, 40);
-        button.setBackground(new Color(179, 255, 184, 180));
+        button.setBounds(10, 620, 200, 40);
+        button.setBackground(Color.ORANGE);
         button.setBorder(BorderFactory.createRaisedBevelBorder());
         button.setFocusPainted(false);
         button.addActionListener(this);
@@ -733,7 +750,8 @@ public class Form implements ActionListener, BusinessTripForm {
     }
 
     private void resetVehiclePanel() {
-        this.vehMakeAndModelField.setText("");
+        this.modelField.setText("");
+        this.makeField.setText("");
         this.vehCategoryField.setText("");
         this.vehRegNField.setText("");
         this.costBy100Field.setText("");
@@ -777,16 +795,12 @@ public class Form implements ActionListener, BusinessTripForm {
         day31.setSelected(false);
     }
 
-    public String getFromWhichDayField() {
-        return this.fromWhichDayField.getText();
+    public int getFromWhichDayField() {
+        return Integer.parseInt(this.fromWhichDayField.getText());
     }
 
-    public String getToWhichDayField() {
-        return this.toWhichDayField.getText();
-    }
-
-    public String getAddExpensesField() {
-        return this.addExpensesField.getText();
+    public int getToWhichDayField() {
+        return Integer.parseInt(this.toWhichDayField.getText());
     }
 
     @Override
@@ -966,8 +980,8 @@ public class Form implements ActionListener, BusinessTripForm {
     }
 
     @Override
-    public String getNumberDocuments() {
-        return this.numberDocumentsField.getText();
+    public int getNumberDocuments() {
+        return Integer.parseInt(this.numberDocumentsField.getText());
     }
 
     @Override
@@ -986,6 +1000,10 @@ public class Form implements ActionListener, BusinessTripForm {
     }
 
     @Override
+    public BigDecimal getNumberOfDays() {
+        return new BigDecimal(this.numberOfDaysField.getText());
+    }
+
     public String getNuberOfDays() {
         return this.numberOfDaysField.getText();
     }
@@ -1015,9 +1033,9 @@ public class Form implements ActionListener, BusinessTripForm {
         return this.tripsThisMonthField.getText();
     }
 
-    @Override
-    public String getAdditionalExpenses() {
-        return this.addExpensesField.getText();
+
+    public BigDecimal getAdditionalExpenses() {
+        return new BigDecimal(this.addExpensesField.getText());
     }
 
     @Override
@@ -1026,13 +1044,13 @@ public class Form implements ActionListener, BusinessTripForm {
     }
 
     @Override
-    public String getNightStayPrice() {
-        return this.nightStayPriceField.getText();
+    public BigDecimal getNightStayPrice() {
+        return new BigDecimal(this.nightStayPriceField.getText());
     }
 
     @Override
-    public String getNumberOfNightsStayed() {
-        return this.numberOFNightStayField.getText();
+    public BigDecimal getNumberOfNightsStayed() {
+        return new BigDecimal(this.numberOFNightStayField.getText());
     }
 
     @Override
@@ -1051,9 +1069,15 @@ public class Form implements ActionListener, BusinessTripForm {
     }
 
     @Override
-    public String getMakeAndModel() {
-        return this.vehMakeAndModelField.getText();
+    public String getModel() {
+        return this.modelField.getText();
     }
+
+    @Override
+    public String getMake() {
+        return this.makeField.getText();
+    }
+
 
     @Override
     public String getCategory() {
@@ -1066,8 +1090,8 @@ public class Form implements ActionListener, BusinessTripForm {
     }
 
     @Override
-    public String getCostBy100() {
-        return this.costBy100Field.getText();
+    public BigDecimal getCostBy100() {
+        return new BigDecimal(this.costBy100Field.getText());
     }
 
     @Override
@@ -1076,13 +1100,13 @@ public class Form implements ActionListener, BusinessTripForm {
     }
 
     @Override
-    public String getFuelPrice() {
-        return this.fuelPriceField.getText();
+    public BigDecimal getFuelPrice() {
+        return new BigDecimal(this.fuelPriceField.getText());
     }
 
     @Override
-    public String getKilometers() {
-        return this.kilometersField.getText();
+    public BigDecimal getKilometers() {
+        return new BigDecimal(this.kilometersField.getText());
     }
 
 }
