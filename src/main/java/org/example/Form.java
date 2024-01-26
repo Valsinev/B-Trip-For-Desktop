@@ -191,9 +191,9 @@ public class Form implements ActionListener, BusinessTripForm {
         nightStayPriceField = new JTextField();
         numberOFNightStayLabel = new JLabel(TextConstants.NUMBER_OF_NIGHTSTAY);
         numberOFNightStayField = new JTextField();
-        fromWhichDayLabel = new JLabel(TextConstants.FROM_WHICH_DAY_OF_THE_MONTH);
+        fromWhichDayLabel = new JLabel(Labels.FROM_WHICH_DATE);
         fromWhichDayField = new JTextField();
-        toWhichDayLabel = new JLabel(TextConstants.TO_WHICH_DAY_OF_THE_MONTH);
+        toWhichDayLabel = new JLabel(Labels.TO_WHICH_DATE);
         toWhichDayField = new JTextField();
 
         whichDaysPanel = new JPanel();
@@ -742,7 +742,7 @@ public class Form implements ActionListener, BusinessTripForm {
             addExpensesField.setText(ErrorMessage.INVALID_DOUBLE);
             throw new Exception(ErrorMessage.INVALID_DOUBLE);
         }
-        if (!FieldValidator.validateNumberOfDaysEqualsInputDays(getNuberOfDays(), getDays())) {
+        if (!FieldValidator.validateNumberOfDaysEqualsInputDays(getNumberOfDays().toString(), getDays())) {
             numberOfDaysField.setForeground(Color.RED);
             numberOfDaysField.setText(ErrorMessage.SELECTED_DAYS_ARENT_EQUAL);
             throw new Exception(ErrorMessage.SELECTED_DAYS_ARENT_EQUAL);
@@ -1000,10 +1000,6 @@ public class Form implements ActionListener, BusinessTripForm {
     @Override
     public BigDecimal getNumberOfDays() {
         return new BigDecimal(this.numberOfDaysField.getText());
-    }
-
-    public String getNuberOfDays() {
-        return this.numberOfDaysField.getText();
     }
 
     @Override
