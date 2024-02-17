@@ -127,6 +127,8 @@ public class Form implements ActionListener, BusinessTripForm {
     JCheckBox day30;
     JCheckBox day31;
     JButton button;
+    private boolean isTravelWithOtherTransport;
+    private BigDecimal otherTransportExpenses;
 
 
     public Form() {
@@ -1107,6 +1109,16 @@ public class Form implements ActionListener, BusinessTripForm {
     @Override
     public BigDecimal getKilometers() {
         return new BigDecimal(this.kilometersField.getText());
+    }
+
+    @Override
+    public boolean getIsTravelWithOtherTransport() {
+        return this.isTravelWithOtherTransport;
+    }
+
+    @Override
+    public BigDecimal getOtherTransportExpenses() {
+        return this.otherTransportExpenses;
     }
 
 }
