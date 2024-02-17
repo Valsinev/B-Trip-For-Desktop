@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Form implements ActionListener, BusinessTripForm {
-
     public JLabel numberDocumentsLabel;
     public JTextField numberDocumentsField;
     JFrame frame;
@@ -75,6 +74,15 @@ public class Form implements ActionListener, BusinessTripForm {
 
     public JRadioButton isTravelWithYourVehicle;
     public JRadioButton isNotTravelWithYourVehicle;
+
+    private final JPanel otherTransportPanel;
+
+    private final ButtonGroup isTravelWOT;
+    JLabel isTravelWithOtherTransportLabel;
+    private JRadioButton isTravelWithOtherTransport;
+    private final JRadioButton isNotTravelWithOtherTransport;
+    JLabel otherTransportExpensesLabel;
+    private JTextField otherTransportExpenses;
     ButtonGroup isNightStayGroup;
 
     public JCheckBox isTravelOnFirstDay;
@@ -141,7 +149,7 @@ public class Form implements ActionListener, BusinessTripForm {
         numberDocumentsLabel = new JLabel(TextConstants.NUMBER_OF_DOCUMENTS);
         numberDocumentsField = new JTextField();
         isTravelWYV = new ButtonGroup();
-        vehPanelTextLabel = new JLabel(TextConstants.IF_YOU_TRAVEL_LABEL);
+        vehPanelTextLabel = new JLabel("Пътуване с ЛМПС?");
         makeLabel = new JLabel(Labels.MAKE);
         makeField = new JTextField();
         modelLabel = new JLabel(Labels.MODEL);
@@ -184,6 +192,15 @@ public class Form implements ActionListener, BusinessTripForm {
         isTravelWYV = new ButtonGroup();
         isTravelWithYourVehicle = new JRadioButton(TextConstants.YES);
         isNotTravelWithYourVehicle = new JRadioButton(TextConstants.NO);
+
+        otherTransportPanel = new JPanel();
+        isTravelWOT = new ButtonGroup();
+        isTravelWithOtherTransportLabel = new JLabel("С Друг Транспорт?");
+        isTravelWithOtherTransport = new JRadioButton(TextConstants.YES);
+        isNotTravelWithOtherTransport = new JRadioButton(TextConstants.NO);
+        otherTransportExpensesLabel = new JLabel("<html>Разгоди за друг<br/>транспорт:</html>");
+        otherTransportExpenses = new JTextField();
+
         isNightStayGroup = new ButtonGroup();
         isTravelOnFirstDay = new JCheckBox(TextConstants.IS_THERE_TRAVEL_ON_FIRST_DAY);
         isTravelOnLastDay = new JCheckBox(TextConstants.IS_THERE_TRAVEL_ON_LAST_DAY);
@@ -321,22 +338,52 @@ public class Form implements ActionListener, BusinessTripForm {
         isNightStayGroup.add(isNightStayYes);
         isNightStayGroup.add(isNightStayNo);
 
-        vehPanelTextLabel.setBounds(20, 220, 250, 20);
+        vehPanelTextLabel.setBounds(20, 170, 250, 20);
         vehPanelTextLabel.setForeground(Color.WHITE);
 
-        isTravelWithYourVehicle.setBounds(25, 240, 50, 20);
+        isTravelWithYourVehicle.setBounds(25, 190, 50, 20);
         isTravelWithYourVehicle.setBackground(new Color(50, 50, 50));
         isTravelWithYourVehicle.setForeground(Color.WHITE);
         isTravelWithYourVehicle.addActionListener(this);
-        isTravelWithYourVehicle.setSelected(true);
 
-        isNotTravelWithYourVehicle.setBounds(90, 240, 50, 20);
+        isNotTravelWithYourVehicle.setBounds(90, 190, 50, 20);
         isNotTravelWithYourVehicle.setBackground(new Color(50, 50, 50));
         isNotTravelWithYourVehicle.setForeground(Color.WHITE);
         isNotTravelWithYourVehicle.addActionListener(this);
+        isNotTravelWithYourVehicle.setSelected(true);
 
         isTravelWYV.add(isTravelWithYourVehicle);
         isTravelWYV.add(isNotTravelWithYourVehicle);
+
+        //other transport section
+
+        otherTransportPanel.setBounds(0, 240, 250, 100);
+        otherTransportPanel.setBackground(new Color(50, 50, 50));
+        otherTransportPanel.setVisible(false);
+        otherTransportPanel.setLayout(null);
+
+        isTravelWithOtherTransportLabel.setBounds(20, 210, 200, 20);
+        isTravelWithOtherTransportLabel.setForeground(Color.WHITE);
+        isTravelWithOtherTransport.setBounds(25, 230, 50, 20);
+        isTravelWithOtherTransport.setBackground(new Color(50, 50, 50));
+        isTravelWithOtherTransport.setForeground(Color.WHITE);
+        isTravelWithOtherTransport.addActionListener(this);
+
+        isNotTravelWithOtherTransport.setBounds(90, 230, 50, 20);
+        isNotTravelWithOtherTransport.setBackground(new Color(50, 50, 50));
+        isNotTravelWithOtherTransport.setForeground(Color.WHITE);
+        isNotTravelWithOtherTransport.addActionListener(this);
+        isNotTravelWithOtherTransport.setSelected(true);
+
+        otherTransportExpensesLabel.setBounds(10, 20, 200, 40);
+        otherTransportExpensesLabel.setForeground(Color.WHITE);
+        otherTransportExpenses.setBounds(10, 60, 200, 20);
+        otherTransportExpenses.addActionListener(this);
+
+        isTravelWOT.add(isTravelWithOtherTransport);
+        isTravelWOT.add(isNotTravelWithOtherTransport);
+
+        //end other transport section
 
         isTravelOnFirstDay.setBounds(0, -5, 200, 20);
         isTravelOnFirstDay.setForeground(Color.WHITE);
@@ -497,12 +544,10 @@ public class Form implements ActionListener, BusinessTripForm {
         vehiclePanel = new JPanel();
         vehiclePanel.setBackground(new Color(50, 50, 50));
         vehiclePanel.setBounds(0, 220, 250, 440);
-        vehiclePanel.setVisible(true);
+        vehiclePanel.setVisible(false);
         vehiclePanel.setLayout(null);
 
         frame.add(vehPanelTextLabel);
-
-
 
         makeLabel.setBounds(10, 40, 200, 20);
         makeLabel.setForeground(Color.WHITE);
@@ -560,6 +605,15 @@ public class Form implements ActionListener, BusinessTripForm {
         vehiclePanel.add(fuelPriceField);
         vehiclePanel.add(kilometersLabel);
         vehiclePanel.add(kilometersField);
+
+        ///Other Transport Panel
+
+        frame.add(isTravelWithOtherTransportLabel);
+        frame.add(isTravelWithOtherTransport);
+        frame.add(isNotTravelWithOtherTransport);
+        otherTransportPanel.add(otherTransportExpensesLabel);
+        otherTransportPanel.add(otherTransportExpenses);
+
         ///////////////////////////////BUTTON
 
         button.setBounds(10, 620, 200, 40);
@@ -603,6 +657,7 @@ public class Form implements ActionListener, BusinessTripForm {
 
         frame.add(isTravelWithYourVehicle);
         frame.add(isNotTravelWithYourVehicle);
+        frame.add(otherTransportPanel);
 
         frame.add(button);
         frame.add(fullNameLabel);
@@ -616,6 +671,7 @@ public class Form implements ActionListener, BusinessTripForm {
         frame.add(vehiclePanel);
         frame.add(addExpensesLabel);
         frame.add(addExpensesField);
+
     }
 
     @Override
@@ -634,10 +690,26 @@ public class Form implements ActionListener, BusinessTripForm {
         }
         if (isTravelWithYourVehicle.isSelected()) {
             vehiclePanel.setVisible(true);
+            isNotTravelWithOtherTransport.setSelected(true);
+            isTravelOnFirstDay.setVisible(true);
+            isTravelOnLastDay.setVisible(true);
         }
         if (isNotTravelWithYourVehicle.isSelected()) {
             vehiclePanel.setVisible(false);
             resetVehiclePanel();
+            otherTransportPanel.setVisible(true);
+            isTravelOnFirstDay.setVisible(false);
+            isTravelOnLastDay.setVisible(false);
+        }
+        if (isTravelWithOtherTransport.isSelected()) {
+            otherTransportPanel.setVisible(true);
+            isTravelOnFirstDay.setVisible(true);
+            isTravelOnLastDay.setVisible(true);
+        }
+        if (isNotTravelWithOtherTransport.isSelected()) {
+            otherTransportPanel.setVisible(false);
+            resetOtherTransportPanel();
+            otherTransportExpenses.setText("0");
         }
 
         if (e.getSource() == button) {
@@ -648,6 +720,10 @@ public class Form implements ActionListener, BusinessTripForm {
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
+            }
+
+            if (isTravelWithOtherTransport.isSelected()) {
+                validateOtherTransportFields();
             }
             if (isNightStayYes.isSelected()) {
                 try {
@@ -667,6 +743,13 @@ public class Form implements ActionListener, BusinessTripForm {
                 new DisplayImage(sheet).setVisible(true);
             }
 
+        }
+    }
+
+    private void validateOtherTransportFields() {
+        if (!FieldValidator.validateDigitField(otherTransportExpenses.getText())) {
+            otherTransportExpenses.setForeground(Color.RED);
+            otherTransportExpenses.setText(ErrorMessage.NUMBER_ERROR_MESSAGE);
         }
     }
 
@@ -758,6 +841,10 @@ public class Form implements ActionListener, BusinessTripForm {
         this.fuelTypeField.setText("");
         this.fuelPriceField.setText("");
         this.kilometersField.setText("");
+    }
+
+    private void resetOtherTransportPanel() {
+        this.otherTransportExpenses.setText("");
     }
 
 
@@ -1101,6 +1188,16 @@ public class Form implements ActionListener, BusinessTripForm {
     @Override
     public BigDecimal getKilometers() {
         return new BigDecimal(this.kilometersField.getText());
+    }
+
+    @Override
+    public boolean getIsTravelWithOtherTransport() {
+        return this.isTravelWithOtherTransport.isSelected();
+    }
+
+    @Override
+    public BigDecimal getOtherTransportExpenses() {
+        return new BigDecimal(this.otherTransportExpenses.getText());
     }
 
 }
