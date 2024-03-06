@@ -12,6 +12,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,14 +76,23 @@ public class Form implements ActionListener, BusinessTripForm {
     public JRadioButton isTravelWithYourVehicle;
     public JRadioButton isNotTravelWithYourVehicle;
 
+    /* NO LONGER NEEDED
+    @Deprecated
     private final JPanel otherTransportPanel;
 
+    @Deprecated
     private final ButtonGroup isTravelWOT;
+    @Deprecated
     JLabel isTravelWithOtherTransportLabel;
+    @Deprecated
     private JRadioButton isTravelWithOtherTransport;
+    @Deprecated
     private final JRadioButton isNotTravelWithOtherTransport;
+    @Deprecated
     JLabel otherTransportExpensesLabel;
+    @Deprecated
     private JTextField otherTransportExpenses;
+     */
     ButtonGroup isNightStayGroup;
 
     public JCheckBox isTravelOnFirstDay;
@@ -100,8 +110,12 @@ public class Form implements ActionListener, BusinessTripForm {
     JLabel whichDaysLabel;
     JTextField whichDaysField;
 
+    /*
+    @Deprecated
     JLabel addExpensesLabel;
+    @Deprecated
     public JTextField addExpensesField;
+     */
 
     JCheckBox day1;
     public JCheckBox day2;
@@ -110,31 +124,31 @@ public class Form implements ActionListener, BusinessTripForm {
     public JCheckBox day5;
     public JCheckBox day6;
     public JCheckBox day7;
-    JCheckBox day8;
-    JCheckBox day9;
+    public JCheckBox day8;
+    public JCheckBox day9;
     public JCheckBox day10;
     public JCheckBox day11;
     public JCheckBox day12;
     public JCheckBox day13;
     public JCheckBox day14;
-    JCheckBox day15;
+    public JCheckBox day15;
     public JCheckBox day16;
     public JCheckBox day17;
     public JCheckBox day18;
     public JCheckBox day19;
     public JCheckBox day20;
     public JCheckBox day21;
-    JCheckBox day22;
-    JCheckBox day23;
-    JCheckBox day24;
-    JCheckBox day25;
-    JCheckBox day26;
-    JCheckBox day27;
-    JCheckBox day28;
-    JCheckBox day29;
-    JCheckBox day30;
-    JCheckBox day31;
-    JButton button;
+    public JCheckBox day22;
+    public JCheckBox day23;
+    public JCheckBox day24;
+    public JCheckBox day25;
+    public JCheckBox day26;
+    public JCheckBox day27;
+    public JCheckBox day28;
+    public JCheckBox day29;
+    public JCheckBox day30;
+    public JCheckBox day31;
+    public JButton button;
 
 
     public Form() {
@@ -193,6 +207,7 @@ public class Form implements ActionListener, BusinessTripForm {
         isTravelWithYourVehicle = new JRadioButton(TextConstants.YES);
         isNotTravelWithYourVehicle = new JRadioButton(TextConstants.NO);
 
+        /* NO LONGER NEEDED
         otherTransportPanel = new JPanel();
         isTravelWOT = new ButtonGroup();
         isTravelWithOtherTransportLabel = new JLabel("С Друг Транспорт?");
@@ -201,11 +216,15 @@ public class Form implements ActionListener, BusinessTripForm {
         otherTransportExpensesLabel = new JLabel("<html>Разгоди за друг<br/>транспорт:</html>");
         otherTransportExpenses = new JTextField();
 
-        isNightStayGroup = new ButtonGroup();
+         */
+
         isTravelOnFirstDay = new JCheckBox(TextConstants.IS_THERE_TRAVEL_ON_FIRST_DAY);
         isTravelOnLastDay = new JCheckBox(TextConstants.IS_THERE_TRAVEL_ON_LAST_DAY);
+        isNightStayGroup = new ButtonGroup();
+
         nightStayPriceLabel = new JLabel(TextConstants.NIGHTSTAY_PRICE);
         nightStayPriceField = new JTextField();
+
         numberOFNightStayLabel = new JLabel(TextConstants.NUMBER_OF_NIGHTSTAY);
         numberOFNightStayField = new JTextField();
         fromWhichDayLabel = new JLabel(Labels.FROM_WHICH_DATE);
@@ -217,8 +236,10 @@ public class Form implements ActionListener, BusinessTripForm {
         whichDaysLabel = new JLabel(TextConstants.WHICH_DAYS);
         whichDaysField = new JTextField();
 
+        /* NO LONGER NEEDED
         addExpensesLabel = new JLabel(TextConstants.ADDEXPENCES);
         addExpensesField = new JTextField();
+         */
 
 
 
@@ -320,9 +341,12 @@ public class Form implements ActionListener, BusinessTripForm {
         tripsThisMonthField.setBounds(220, 370, 105, 20);
         tripsThisMonthField.addActionListener(this);
 
+
+        /*
         addExpensesLabel.setBounds(335, 332, 105, 30);
         addExpensesLabel.setForeground(Color.WHITE);
         addExpensesField.setBounds(335,370,100,20);
+         */
 
         isNightStayLabel.setBounds(220, 395, 230, 20);
         isNightStayLabel.setForeground(Color.WHITE);
@@ -357,6 +381,7 @@ public class Form implements ActionListener, BusinessTripForm {
 
         //other transport section
 
+        /* NO LONGER NEEDED
         otherTransportPanel.setBounds(0, 240, 250, 100);
         otherTransportPanel.setBackground(new Color(50, 50, 50));
         otherTransportPanel.setVisible(false);
@@ -383,6 +408,7 @@ public class Form implements ActionListener, BusinessTripForm {
         isTravelWOT.add(isTravelWithOtherTransport);
         isTravelWOT.add(isNotTravelWithOtherTransport);
 
+         */
         //end other transport section
 
         isTravelOnFirstDay.setBounds(0, -5, 200, 20);
@@ -401,6 +427,7 @@ public class Form implements ActionListener, BusinessTripForm {
         nightStayPriceLabel.setForeground(Color.WHITE);
         nightStayPriceField.setBounds(0, 55, 200, 20);
         nightStayPriceField.addActionListener(this);
+
 
         numberOFNightStayLabel.setBounds(0, 75, 200, 20);
         numberOFNightStayLabel.setForeground(Color.WHITE);
@@ -608,11 +635,14 @@ public class Form implements ActionListener, BusinessTripForm {
 
         ///Other Transport Panel
 
+        /* NO LONGER NEEDED
         frame.add(isTravelWithOtherTransportLabel);
         frame.add(isTravelWithOtherTransport);
         frame.add(isNotTravelWithOtherTransport);
         otherTransportPanel.add(otherTransportExpensesLabel);
         otherTransportPanel.add(otherTransportExpenses);
+
+         */
 
         ///////////////////////////////BUTTON
 
@@ -657,7 +687,10 @@ public class Form implements ActionListener, BusinessTripForm {
 
         frame.add(isTravelWithYourVehicle);
         frame.add(isNotTravelWithYourVehicle);
+
+        /* NO LONGER NEEDED
         frame.add(otherTransportPanel);
+         */
 
         frame.add(button);
         frame.add(fullNameLabel);
@@ -669,8 +702,11 @@ public class Form implements ActionListener, BusinessTripForm {
         frame.add(numberDocumentsLabel);
         frame.add(numberDocumentsField);
         frame.add(vehiclePanel);
+
+        /* no longer needed
         frame.add(addExpensesLabel);
         frame.add(addExpensesField);
+         */
 
     }
 
@@ -690,17 +726,22 @@ public class Form implements ActionListener, BusinessTripForm {
         }
         if (isTravelWithYourVehicle.isSelected()) {
             vehiclePanel.setVisible(true);
+            /* NO LONGER NEEDED
             isNotTravelWithOtherTransport.setSelected(true);
+             */
             isTravelOnFirstDay.setVisible(true);
             isTravelOnLastDay.setVisible(true);
         }
         if (isNotTravelWithYourVehicle.isSelected()) {
             vehiclePanel.setVisible(false);
             resetVehiclePanel();
+            /* no longer needed
             otherTransportPanel.setVisible(true);
+             */
             isTravelOnFirstDay.setVisible(false);
             isTravelOnLastDay.setVisible(false);
         }
+        /*
         if (isTravelWithOtherTransport.isSelected()) {
             otherTransportPanel.setVisible(true);
             isTravelOnFirstDay.setVisible(true);
@@ -708,9 +749,10 @@ public class Form implements ActionListener, BusinessTripForm {
         }
         if (isNotTravelWithOtherTransport.isSelected()) {
             otherTransportPanel.setVisible(false);
-            resetOtherTransportPanel();
             otherTransportExpenses.setText("0");
+            resetOtherTransportPanel();
         }
+         */
 
         if (e.getSource() == button) {
 
@@ -718,27 +760,34 @@ public class Form implements ActionListener, BusinessTripForm {
                 try {
                     validateVehicleFields();
                 } catch (Exception ex) {
+                    // Display the exception message in a popup window
+                    JOptionPane.showMessageDialog(this.frame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     throw new RuntimeException(ex);
                 }
             }
 
+            /* NO LONGER NEEDED
             if (isTravelWithOtherTransport.isSelected()) {
                 validateOtherTransportFields();
             }
+             */
             if (isNightStayYes.isSelected()) {
                 try {
                     validateNightStayFields();
                 } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this.frame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     throw new RuntimeException(ex);
                 }
             }
             try {
                 validateCommonFields();
             } catch (Exception ex) {
+                // Display the exception message in a popup window
+                JOptionPane.showMessageDialog(this.frame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 throw new RuntimeException(ex);
             }
             List<BufferedImage> sheets = new ArrayList<>();
-            TripTypeSelector.select(this, sheets);
+            TripTypeSelector.select(this, sheets, new Config());
             for (BufferedImage sheet: sheets) {
                 new DisplayImage(sheet).setVisible(true);
             }
@@ -746,59 +795,61 @@ public class Form implements ActionListener, BusinessTripForm {
         }
     }
 
+    private void validateVehicleFields() throws Exception {
+        if (!FieldValidator.validateDigitField(costBy100Field.getText())) {
+            costBy100Field.setForeground(Color.RED);
+            costBy100Field.setText(UserErrorMessage.INVALID_COST_BY_100);
+            throw new Exception(UserErrorMessage.INVALID_COST_BY_100);
+        }
+        if (!FieldValidator.validateDigitField(fuelPriceField.getText())) {
+            fuelPriceField.setForeground(Color.RED);
+            fuelPriceField.setText(UserErrorMessage.INVALID_FUEL_PRICE);
+            throw new Exception(UserErrorMessage.INVALID_FUEL_PRICE);
+        }
+        if (!FieldValidator.validateDigitField(kilometersField.getText())) {
+            kilometersField.setForeground(Color.RED);
+            kilometersField.setText(UserErrorMessage.INVALID_KILOMETERS);
+            throw new Exception(UserErrorMessage.INVALID_KILOMETERS);
+        }
+    }
+
+    /* NO LONGER NEEDED
     private void validateOtherTransportFields() {
         if (!FieldValidator.validateDigitField(otherTransportExpenses.getText())) {
             otherTransportExpenses.setForeground(Color.RED);
             otherTransportExpenses.setText(ErrorMessage.NUMBER_ERROR_MESSAGE);
         }
     }
+     */
 
     private void validateNightStayFields() throws Exception {
         if (!FieldValidator.validateDigitField(nightStayPriceField.getText())) {
             nightStayPriceField.setForeground(Color.RED);
-            nightStayPriceField.setText(ErrorMessage.NUMBER_ERROR_MESSAGE);
-            throw new Exception(ErrorMessage.NUMBER_ERROR_MESSAGE);
+            nightStayPriceField.setText(UserErrorMessage.INVALID_NIGHTSTAY_PRICE);
+            throw new Exception(UserErrorMessage.INVALID_NIGHTSTAY_PRICE);
         }
         if (!FieldValidator.validateDayField(numberOFNightStayField.getText())) {
             numberOFNightStayField.setForeground(Color.RED);
             numberOFNightStayField.setText(ErrorMessage.INVALID_DAYS_ERROR_MESSAGE);
-            throw new Exception(ErrorMessage.INVALID_DAYS_ERROR_MESSAGE);
+            throw new Exception(UserErrorMessage.INVALID_NUMBER_OF_NIGHTS);
         }
         if (!FieldValidator.validateDayField(fromWhichDayField.getText())) {
             fromWhichDayField.setForeground(Color.RED);
             fromWhichDayField.setText(ErrorMessage.INVALID_DAYS_ERROR_MESSAGE);
-            throw new Exception(ErrorMessage.INVALID_DAYS_ERROR_MESSAGE);
+            throw new Exception(UserErrorMessage.INVALID_FROM_WHICH_DAY);
         }
         if (!FieldValidator.validateDayField(toWhichDayField.getText())) {
             toWhichDayField.setForeground(Color.RED);
             toWhichDayField.setText(ErrorMessage.INVALID_DAYS_ERROR_MESSAGE);
-            throw new Exception(ErrorMessage.INVALID_DAYS_ERROR_MESSAGE);
-        }
-    }
-
-    private void validateVehicleFields() throws Exception {
-        if (!FieldValidator.validateDigitField(costBy100Field.getText())) {
-            costBy100Field.setForeground(Color.RED);
-            costBy100Field.setText(ErrorMessage.NUMBER_ERROR_MESSAGE);
-            throw new Exception(ErrorMessage.NUMBER_ERROR_MESSAGE);
-        }
-        if (!FieldValidator.validateDigitField(fuelPriceField.getText())) {
-            fuelPriceField.setForeground(Color.RED);
-            fuelPriceField.setText(ErrorMessage.NUMBER_ERROR_MESSAGE);
-            throw new Exception(ErrorMessage.NUMBER_ERROR_MESSAGE);
-        }
-        if (!FieldValidator.validateDigitField(kilometersField.getText())) {
-            kilometersField.setForeground(Color.RED);
-            kilometersField.setText(ErrorMessage.NUMBER_ERROR_MESSAGE);
-            throw new Exception(ErrorMessage.NUMBER_ERROR_MESSAGE);
+            throw new Exception(UserErrorMessage.INVALID_TO_WHICH_DAY);
         }
     }
 
     private void validateCommonFields() throws Exception {
         if (!FieldValidator.validateDigitField(numberDocumentsField.getText())) {
             numberDocumentsField.setForeground(Color.RED);
-            numberDocumentsField.setText(ErrorMessage.NUMBER_ERROR_MESSAGE);
-            throw new Exception(ErrorMessage.NUMBER_ERROR_MESSAGE);
+            numberDocumentsField.setText(UserErrorMessage.INVALID_NUMBER_DOCUMENTS);
+            throw new Exception(UserErrorMessage.INVALID_NUMBER_DOCUMENTS);
         }
         if (!FieldValidator.validateDayField(numberOfDaysField.getText())) {
             numberOfDaysField.setForeground(Color.RED);
@@ -817,17 +868,19 @@ public class Form implements ActionListener, BusinessTripForm {
         }
         if (!FieldValidator.validateDigitField(tripsThisMonthField.getText())) {
             tripsThisMonthField.setForeground(Color.RED);
-            tripsThisMonthField.setText(ErrorMessage.NUMBER_ERROR_MESSAGE);
-            throw new Exception(ErrorMessage.NUMBER_ERROR_MESSAGE);
+            tripsThisMonthField.setText(UserErrorMessage.INVALID_TRIPS_THIS_MONTH);
+            throw new Exception(UserErrorMessage.INVALID_TRIPS_THIS_MONTH);
         }
+        /* NO LONGER NEEDED
         if (!FieldValidator.validateDigitField(addExpensesField.getText())) {
             addExpensesField.setForeground(Color.RED);
-            addExpensesField.setText(ErrorMessage.INVALID_DOUBLE);
-            throw new Exception(ErrorMessage.INVALID_DOUBLE);
+            addExpensesField.setText(UserErrorMessage.INVALID_DOUBLE);
+            throw new Exception(UserErrorMessage.INVALID_DOUBLE);
         }
+         */
         if (!FieldValidator.validateNumberOfDaysEqualsInputDays(getNumberOfDays().toString(), getDays())) {
             numberOfDaysField.setForeground(Color.RED);
-            numberOfDaysField.setText(ErrorMessage.SELECTED_DAYS_ARENT_EQUAL);
+            //numberOfDaysField.setText(ErrorMessage.SELECTED_DAYS_ARENT_EQUAL);
             throw new Exception(ErrorMessage.SELECTED_DAYS_ARENT_EQUAL);
         }
     }
@@ -843,9 +896,12 @@ public class Form implements ActionListener, BusinessTripForm {
         this.kilometersField.setText("");
     }
 
+
+    /* NO LONGER NEEDED
     private void resetOtherTransportPanel() {
         this.otherTransportExpenses.setText("");
     }
+     */
 
 
     private void resetDaysCheckboxes() {
@@ -1114,9 +1170,10 @@ public class Form implements ActionListener, BusinessTripForm {
         return this.tripsThisMonthField.getText();
     }
 
-
+    @Deprecated
     public BigDecimal getAdditionalExpenses() {
-        return new BigDecimal(this.addExpensesField.getText());
+        //return new BigDecimal(this.addExpensesField.getText());
+        return null;
     }
 
     @Override
@@ -1192,13 +1249,26 @@ public class Form implements ActionListener, BusinessTripForm {
 
     @Override
     public boolean getIsTravelWithOtherTransport() {
-        return this.isTravelWithOtherTransport.isSelected();
+        return false;
     }
 
+    /*
+    @Override
+    public boolean getIsTravelWithOtherTransport() {
+        return this.isTravelWithOtherTransport.isSelected();
+    }
+     */
+
+    @Deprecated
     @Override
     public BigDecimal getOtherTransportExpenses() {
+        /*
         return new BigDecimal(this.otherTransportExpenses.getText());
+
+         */
+        return null;
     }
+
 
 }
 
