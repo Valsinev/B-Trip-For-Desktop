@@ -1,8 +1,6 @@
 package org.example;
 
-import org.example.constants.ErrorMessage;
-import org.example.constants.TextConstants;
-import org.example.engine.BusinessTripForm;
+import org.example.configuration.BusinessTripForm;
 import org.example.engine.TripTypeSelector;
 import org.example.utillity.BTripGetDaysFromCheckboxesOrFields;
 import org.example.utillity.FieldValidator;
@@ -1048,6 +1046,11 @@ public class Form implements ActionListener, BusinessTripForm {
     @Override
     public boolean getDay31() {
         return day31.isSelected();
+    }
+
+    @Override
+    public String getDificulties() {
+        return "не срещнах";
     }
 
 
