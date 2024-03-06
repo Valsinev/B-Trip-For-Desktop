@@ -1,6 +1,8 @@
 package org.example;
 
 import org.example.configuration.BusinessTripForm;
+import org.example.configuration.Config;
+import org.example.constants.*;
 import org.example.engine.TripTypeSelector;
 import org.example.utillity.BTripGetDaysFromCheckboxesOrFields;
 import org.example.utillity.FieldValidator;
@@ -10,7 +12,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -785,7 +786,8 @@ public class Form implements ActionListener, BusinessTripForm {
                 throw new RuntimeException(ex);
             }
             List<BufferedImage> sheets = new ArrayList<>();
-            TripTypeSelector.select(this, sheets, new Config());
+            TripTypeSelector tripTypeSelector = new TripTypeSelector(new OrderTextCoordinates(), new OrderAdditionalDaysCoordinates(), new TravelListTextCoordinates());
+            tripTypeSelector.select(this, sheets, new Config());
             for (BufferedImage sheet: sheets) {
                 new DisplayImage(sheet).setVisible(true);
             }
@@ -876,7 +878,8 @@ public class Form implements ActionListener, BusinessTripForm {
             throw new Exception(UserErrorMessage.INVALID_DOUBLE);
         }
          */
-        if (!FieldValidator.validateNumberOfDaysEqualsInputDays(getNumberOfDays().toString(), getDays())) {
+        FieldValidator validator = new FieldValidator();
+        if (!validator.validateNumberOfDaysEqualsInputDays(getNumberOfDays().toString(), getDays(), ErrorMessage.SELECTED_DAYS_ARENT_EQUAL)) {
             numberOfDaysField.setForeground(Color.RED);
             //numberOfDaysField.setText(ErrorMessage.SELECTED_DAYS_ARENT_EQUAL);
             throw new Exception(ErrorMessage.SELECTED_DAYS_ARENT_EQUAL);
