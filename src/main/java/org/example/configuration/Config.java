@@ -3,6 +3,7 @@ package org.example.configuration;
 import org.example.configuration.IConfiguration;
 
 import java.awt.*;
+import java.math.RoundingMode;
 import java.util.Optional;
 
 public class Config implements IConfiguration {
@@ -29,6 +30,16 @@ public class Config implements IConfiguration {
     @Override
     public int getNumberOfDaysInOneOrder() {
         return 8;
+    }
+
+    @Override
+    public int getScale() {
+        return 2;
+    }
+
+    @Override
+    public RoundingMode getRoundingMode() {
+        return RoundingMode.HALF_UP;
     }
 
     @Override
